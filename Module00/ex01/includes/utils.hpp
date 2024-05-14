@@ -5,7 +5,10 @@
 #include <string>
 #include <cstdlib>
 
-std::string getValidStringInput();
-unsigned int getValidUnsignedIntInput();
+std::string getValidStringInput(const std::string &prompt);
+std::string getValidStringInput(const std::string &prompt, const std::string &error_msg);
+std::string trim(const std::string &str);
+std::string stringSetSize(const std::string &str, size_t size);
+std::string uIntToString(unsigned int idx);
 
-#endif //UTILS_HPP
+#endif // UTILS_HPP

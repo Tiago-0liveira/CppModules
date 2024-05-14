@@ -27,7 +27,6 @@ void PhoneBook::addContact(const Contact& contact) {
 		contactIdx = 0;
 	
 	contacts[contactIdx++] = contact;
-	contacts[contactIdx-1].writeOutput(contactIdx-1);
 }
 void PhoneBook::searchContact() {
 	std::cout << std::setw(COLUMN_WIDTH) << "Index" << COLUMN_SEPARATOR;
@@ -37,6 +36,6 @@ void PhoneBook::searchContact() {
 	for (unsigned int i = 0; i < MAX_CONTACTS; i++) {
 		if (contacts[i].isEmpty)
 			continue;
-		contacts[i].writeOutput(i);
+		contacts[i].writeOutput(uIntToString(i));
 	}
 }

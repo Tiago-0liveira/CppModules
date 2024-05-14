@@ -2,6 +2,7 @@
 #include <Command.hpp>
 #include <Contact.hpp>
 #include <iostream>
+#include <utils.hpp>
 
 int main()
 {
@@ -11,13 +12,7 @@ int main()
 	
 	do
 	{
-		std::cout << " > ";
-		std::getline(std::cin, input);
-		if (std::cin.eof())
-		{
-			std::cout << std::endl;
-			break;
-		}
+		input = getValidStringInput(" > ", "Invalid command");
 		commandType = inputMatch(input);
 		switch (commandType)
 		{
@@ -28,12 +23,12 @@ int main()
 				phoneBook.searchContact();
 				break;
 			case EXIT:
-				break;
+				return 0;
 			case INVALID:
 				std::cout << "Invalid command" << std::endl;
 				break;
 		}
-	} while (input != "EXIT");
+	} while (1);
 	
 	return 0;
 }

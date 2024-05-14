@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <iostream>
 #include <limits>
+#include <utils.hpp>
 #ifndef COLUMN_WIDTH
 	#define COLUMN_WIDTH 10
 #endif
@@ -16,18 +17,18 @@
 class Contact {
 public:
 	Contact();
-	Contact(const std::string& firstName, const std::string& lastName, const std::string& nickName, unsigned int phoneNumber, const std::string& darkestSecret);
+	Contact(const std::string& firstName, const std::string& lastName, const std::string& nickName, const std::string& phoneNumber, const std::string& darkestSecret);
 	~Contact();
 	Contact(const Contact& other);
 	Contact& operator=(const Contact& other);
-	void writeOutput(unsigned int idx);
+	void writeOutput(const std::string& idx);
 	static Contact getContactFromInput();
 private:
-	std::string     firstName;
-	std::string     lastName;
-	std::string     nickName;
-	std::string     darkestSecret;
-	unsigned int    phoneNumber;
+	std::string	firstName;
+	std::string	lastName;
+	std::string	nickName;
+	std::string	darkestSecret;
+	std::string	phoneNumber;
 public:
 	bool    	    isEmpty;
 };
