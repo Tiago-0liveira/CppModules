@@ -30,7 +30,8 @@ IGreen='\033[0;92m'       # Green
 IYellow='\033[0;93m'      # Yellow
 ICyan='\033[0;96m'        # Cyan
 
-MSG1 = @echo ${IGreen}"Compiled Successfully ✔︎"${Color_Off}
+MSG0 = @echo [$(ICyan)$(NAME)$(Color_Off)] Compiled $(IGreen)$<$(Color_Off)
+MSG1 = @echo "\n"[$(ICyan)$(NAME)$(Color_Off)] Compiled ${IGreen} Successfully ✔︎${Color_Off}
 MSG2 = @echo ${IYellow}"Cleaned Successfully ✔︎"${Color_Off}
 MSG3 = @echo ${ICyan}"Cleaned ${NAME} Successfully ✔︎"${Color_Off}
 
@@ -43,6 +44,7 @@ $(NAME): $(OBJS)
 $(OBJS): $(OBJ_DIR)%.o: $(SRC_FOLDER)%.cpp $(INCLUDE_HEADERS)
 	@mkdir -p $(OBJ_DIR) $(dir $@)
 	@$(CC) $(CFLAGS) -o $@ -c $<
+	$(MSG0)
 
 clean:
 	@/bin/rm -rf $(OBJ_DIR)
@@ -51,5 +53,8 @@ clean:
 fclean: clean
 	@/bin/rm -rf $(NAME) ${OBJ_DIR}
 	$(MSG3)
+
+run: all
+	@./$(NAME)
 
 re: fclean all
