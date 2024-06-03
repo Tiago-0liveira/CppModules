@@ -3,6 +3,7 @@
 
 #include <Contact.hpp>
 #include <iostream>
+#include <utils.hpp>
 
 #define MAX_CONTACTS 8
 #ifndef COLUMN_WIDTH

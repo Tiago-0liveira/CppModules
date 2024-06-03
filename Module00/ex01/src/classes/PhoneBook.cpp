@@ -38,4 +38,22 @@ void PhoneBook::searchContact() {
 			continue;
 		contacts[i].writeOutput(uIntToString(i));
 	}
+	std::string idxStr = getValidStringInput("Enter index: ", "Invalid index, must be between 0 and " + uIntToString(MAX_CONTACTS - 1));
+	int idx = 0;
+	for (int i = 0; (unsigned long)i < idxStr.length(); i++) {
+		if (!isdigit(idxStr[i]) || idxStr[i] - '0' < 0 || idxStr[i] - '0' >= MAX_CONTACTS) {
+			std::cout << "Invalid index, must be between 0 and " << MAX_CONTACTS - 1 << std::endl;
+			return;
+		}
+		idx = idx * 10 + (idxStr[i] - '0');
+		if (idx >= MAX_CONTACTS) {
+			std::cout << "Invalid index, must be between 0 and " << MAX_CONTACTS - 1 << std::endl;
+			return;
+		}
+	}
+	if (contacts[idx].isEmpty) {
+		std::cout << "Empty Contact" << std::endl;
+		return;
+	}
+	contacts[idx].writeDetailedOutput();
 }

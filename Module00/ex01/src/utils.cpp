@@ -62,7 +62,7 @@ std::string uIntToString(unsigned int idx)
     }
 
     char buffer[2];
-    buffer[0] = idx;
+    buffer[0] = idx + '0';
     buffer[1] = '\0';
 
     return std::string(buffer);

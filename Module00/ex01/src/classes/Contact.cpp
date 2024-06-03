@@ -40,6 +40,16 @@ void Contact::writeOutput(const std::string& idx)
 	std::cout << stringSetSize(lastName, COLUMN_WIDTH) << COLUMN_SEPARATOR;
 	std::cout << stringSetSize(nickName, COLUMN_WIDTH) << std::endl;
 }
+
+void Contact::writeDetailedOutput()
+{
+	std::cout << "First Name:     " << firstName << std::endl;
+	std::cout << "Last Name:      " << lastName << std::endl;
+	std::cout << "Nick Name:      " << nickName << std::endl;
+	std::cout << "Phone Number:   " << phoneNumber << std::endl;
+	std::cout << "Darkest Secret: " << darkestSecret << std::endl;
+}
+
 Contact Contact::getContactFromInput()
 {
 	std::string firstName;

@@ -22,6 +22,7 @@ public:
 	Contact(const Contact& other);
 	Contact& operator=(const Contact& other);
 	void writeOutput(const std::string& idx);
+	void writeDetailedOutput();
 	static Contact getContactFromInput();
 private:
 	std::string	firstName;
