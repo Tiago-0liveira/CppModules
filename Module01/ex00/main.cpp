@@ -1,12 +1,16 @@
 #include <Zombie.hpp>
-#include <Zombie.h>
+
+/* Allocate new zombie */
+Zombie *newZombie(std::string name);
+/* Announce a zombie with <name> */
+void	randomChump(std::string name);
 
 int main(void)
 {
-	Zombie test ("filipe");
-	Zombie *test1 = newZombie("ze");
+	Zombie test ("Ze");
+	Zombie *test1 = newZombie("Rui");
 	test.announce();
 	test1->announce();
-	randomChump("maria");
+	randomChump("Antonio");
 	delete test1;
 }
