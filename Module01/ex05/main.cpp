@@ -2,11 +2,11 @@
 
 int main()
 {
-	Harl annoying;
+	Harl harl;
 
-	annoying.complain("debug");
-	annoying.complain("info");
-	annoying.complain("warning");
-	annoying.complain("error");
-	annoying.complain("this is boring");
+	harl.complain("debug");
+	harl.complain("info");
+	harl.complain("warning");
+	harl.complain("error");
+	harl.complain("invalid level");
 }

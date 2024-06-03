@@ -1,32 +1,34 @@
-NAME = brain
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g3 #-fsanitize=address
-SRC = main.cpp
-BUILD_DIR = build
+NAME = brains
+C = c++
+FLAGS = -Wall -Wextra -Werror -std=c++98 -g
+OBJ_DIR = obj
+
 INCLUDES = -I.
-OBJ = $(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o))
+
+SRC_FILES = main.cpp
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.cpp=.o))
 
 all: $(NAME)
 
-$(BUILD_DIR):
-	@mkdir -p $(BUILD_DIR)
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
 
 $(NAME): $(OBJ)
 	@echo "Compiling $@..."
-	@$(CXX) $(CXXFLAGS) -o $@ $^ $(INCLUDES)
-	@echo "Done!"
+	@$(C) $(FLAGS) -o $@ $^ $(INCLUDES)
+	@echo "Ready!"
 
-$(BUILD_DIR)/%.o: %.cpp | $(BUILD_DIR)
+$(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(@D)
-	@echo "Compiling $@..."
-	@$(CXX) $(CXXFLAGS) -o $@ -c $< $(INCLUDES)
+	@echo "Compiling $<..."
+	@$(C) $(FLAGS) -o $@ -c $< $(INCLUDES)
 
 clean:
-	@rm -rf $(BUILD_DIR)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "Cleaned $(NAME) and object files"
+	@echo "Cleaned $(NAME) and object directory."
 
 re: fclean all
 

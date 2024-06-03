@@ -3,13 +3,13 @@
 
 #include <iostream>
 
-enum e_level {
+enum e_harl_level {
 	DEBUG,
 	INFO,
 	WARNING,
 	ERROR,
 	INVALID
-} ;
+};
 
 class Harl {
 	private:
@@ -18,12 +18,10 @@ class Harl {
 		void warning(void);
 		void error(void);
 
-	static e_level _getLevel(const std::string &level);
-
+	static e_harl_level _getLevel(const std::string &level);
 
 	public:
-		void complain(std::string level);
-
+		void complain(const std::string& level);
 };
 
 #endif //HARL_HPP

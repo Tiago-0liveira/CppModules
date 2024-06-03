@@ -1,7 +1,7 @@
 NAME = BraiiiiiiinnnzzzZ
 C = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -g
-OBJ_DIR = build
+OBJ_DIR = obj
 
 INCLUDES = -I.
 

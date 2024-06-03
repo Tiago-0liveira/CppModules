@@ -1,8 +1,9 @@
 #include <fstream>
 #include <iostream>
-#include <string.h>
+#include <string>
+#include <cstring>
 
-void awesome_replace(const std::string &file, const std::string &needle, const std::string &replace);
+void file_replace(const std::string &file, const std::string &needle, const std::string &replace);
 
 int main(int ac, char **av)
 {
@@ -14,45 +15,45 @@ int main(int ac, char **av)
 	else
 	{
 		std::string file(av[1]);
-		std::cout << strlen(av[2]) << std::endl;
 		std::string needle(av[2]);
 		std::string replace(av[3]);
-		awesome_replace(file, needle, replace);
+		file_replace(file, needle, replace);
 	}
 }
 
-void awesome_replace(const std::string &file, const std::string &needle, const std::string &replace)
+void file_replace(const std::string &file, const std::string &needle, const std::string &replace)
 {
-	// open input file
-	std::ifstream inFile(file.c_str());
-	if (!inFile)
+	if (needle.empty())
+	{
+		std::cerr << "Needle is empty" << std::endl;
+		return;
+	}
+	std::ifstream fileIn(file.c_str());
+	if (!fileIn)
 	{
 		std::cerr << "Unable to open input file" << std::endl;
 		return;
 	}
-
-	// create and open output file
-	std::string temp = file + ".replace";
-	std::ofstream outFile(temp.c_str());
-	if (!outFile)
+	std::string fileOutName = file + ".replace";
+	std::ofstream fileOut(fileOutName.c_str());
+	if (!fileOut)
 	{
+		fileIn.close();
 		std::cerr << "Unable to open output file" << std::endl;
 		return;
 	}
-	// Parse the input file
 	std::string line;
-	while (std::getline(inFile, line))
+	while (std::getline(fileIn, line))
 	{
 		size_t pos = 0;
-		// for each line check if we can find the needle
 		while ((pos = line.find(needle, pos)) != std::string::npos)
 		{
-			line.erase(pos, needle.length()); // if the needle was found remove it from the line
-			line.insert(pos, replace);		  // then insert the replace string inside the line
-			pos += replace.length();		  // increment the position (to skip the replaced chars and not enter an infinite loop)
+			line.erase(pos, needle.length());
+			line.insert(pos, replace);
+			pos += replace.length();
 		}
-		outFile << line << std::endl; // Save the line inside the output file
+		fileOut << line << std::endl;
 	}
-	inFile.close();
-	outFile.close();
+	fileIn.close();
+	fileOut.close();
 }

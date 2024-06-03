@@ -1,15 +1,16 @@
 #include <Zombie.hpp>
-#include <Zombie.h>
+
+Zombie *zombieHorde(int N, std::string name);
 
 int main(void)
 {
-	Zombie *ptr = zombieHorde(10, "filipe");
+	Zombie *zombiesPtr = zombieHorde(5, "Rui");
 
-	if (!ptr)
+	if (!zombiesPtr)
 		return 1;
-	for(int k = 0; k < 10; k++)
-		ptr[k].announce();
+	for(int k = 0; k < 5; k++)
+		zombiesPtr[k].announce();
 
-	delete[] ptr;
+	delete[] zombiesPtr;
 	return 0;
 }
