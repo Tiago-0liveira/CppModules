@@ -15,9 +15,9 @@ std::string getValidStringInput(const std::string &prompt, const std::string &er
 		std::cout << prompt;
 		std::getline(std::cin, input);
 		tmp = trim(input);
-		if (!error_msg.empty() && !std::cin.eof() && tmp.length() == 0)
+		if (!error_msg.empty() && !std::cin.eof() && tmp.empty())
 			std::cout << error_msg << std::endl;
-	} while (!std::cin.eof() && tmp.length() == 0);
+	} while (!std::cin.eof() && tmp.empty());
 	if (std::cin.eof())
 	{
 		std::cout << std::endl;
@@ -49,7 +49,7 @@ std::string stringSetSize(const std::string &str, size_t size)
 	{
 		return str.substr(0, size - 1) + ".";
 	}
-	std::string res = "";
+	std::string res;
 	while (res.length() + str.length() < size)
 		res += " ";
 	return res + str;
@@ -62,7 +62,7 @@ std::string uIntToString(unsigned int idx)
     }
 
     char buffer[2];
-    buffer[0] = '0' + idx;
+    buffer[0] = idx;
     buffer[1] = '\0';
 
     return std::string(buffer);

@@ -14,7 +14,7 @@ Contact::Contact() {
 }
 
 Contact::~Contact() {}
-Contact::Contact(const Contact &other)
+Contact::Contact(const Contact &other) : isEmpty(false)
 {
 	*this = other;
 }
@@ -35,10 +35,6 @@ Contact &Contact::operator=(const Contact &other)
 }
 void Contact::writeOutput(const std::string& idx)
 {
-	//std::cout << std::setw(COLUMN_WIDTH) << idx << COLUMN_SEPARATOR;
-	//std::cout << std::setw(COLUMN_WIDTH) << firstName << COLUMN_SEPARATOR;
-	//std::cout << std::setw(COLUMN_WIDTH) << lastName << COLUMN_SEPARATOR;
-	//std::cout << std::setw(COLUMN_WIDTH) << nickName << std::endl;
 	std::cout << stringSetSize(idx, COLUMN_WIDTH) << COLUMN_SEPARATOR;
 	std::cout << stringSetSize(firstName, COLUMN_WIDTH) << COLUMN_SEPARATOR;
 	std::cout << stringSetSize(lastName, COLUMN_WIDTH) << COLUMN_SEPARATOR;

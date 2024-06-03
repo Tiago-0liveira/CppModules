@@ -28,7 +28,7 @@ int main()
 				std::cout << "Invalid command" << std::endl;
 				break;
 		}
-	} while (1);
+	} while (true);
 	
 	return 0;
 }
