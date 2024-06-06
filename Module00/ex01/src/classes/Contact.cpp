@@ -59,10 +59,15 @@ Contact Contact::getContactFromInput()
 	std::string darkestSecret;
 	
 	firstName = getValidStringInput("First Name: ");
+	replaceTabs(firstName);
 	lastName = getValidStringInput("Last Name: ");
+	replaceTabs(lastName);
 	nickName = getValidStringInput("Nick Name: ");
+	replaceTabs(nickName);
 	phoneNumber = getValidStringInput("Phone Number: ");
+	replaceTabs(phoneNumber);
 	darkestSecret = getValidStringInput("Darkest Secret: ");
+	replaceTabs(darkestSecret);
 	
 	return Contact(firstName, lastName, nickName, phoneNumber, darkestSecret);
 }

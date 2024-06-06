@@ -10,6 +10,11 @@ std::string getValidStringInput(const std::string &prompt, const std::string &er
 	std::string input;
 	std::string tmp;
 
+	if (std::cin.eof())
+	{
+		std::cout << std::endl;
+		exit(EXIT_FAILURE);
+	}
 	do
 	{
 		std::cout << prompt;
@@ -18,11 +23,6 @@ std::string getValidStringInput(const std::string &prompt, const std::string &er
 		if (!error_msg.empty() && !std::cin.eof() && tmp.empty())
 			std::cout << error_msg << std::endl;
 	} while (!std::cin.eof() && tmp.empty());
-	if (std::cin.eof())
-	{
-		std::cout << std::endl;
-		exit(EXIT_FAILURE);
-	}
 	return tmp;
 }
 
@@ -57,13 +57,23 @@ std::string stringSetSize(const std::string &str, size_t size)
 
 std::string uIntToString(unsigned int idx)
 {
-	if (idx > 8) {
-        throw std::out_of_range("Index out of range. It must be between 0 and 8.");
+	if (idx > 8)
+	{
+		throw std::out_of_range("Index out of range. It must be between 0 and 8.");
+	}
+
+	char buffer[2];
+	buffer[0] = idx + '0';
+	buffer[1] = '\0';
+
+	return std::string(buffer);
+}
+
+void replaceTabs(std::string& str)
+{
+    for (std::size_t i = 0; i < str.size(); ++i)
+	{
+        if (str[i] == '\t')
+            str[i] = ' ';
     }
-
-    char buffer[2];
-    buffer[0] = idx + '0';
-    buffer[1] = '\0';
-
-    return std::string(buffer);
 }
