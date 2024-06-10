@@ -1,11 +1,11 @@
-NAME = ScavTrap
+NAME = FragTrap
 C = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -g
 OBJ_DIR = obj
 
 INCLUDES = -I.
 
-SRC_FILES = main.cpp ClapTrap.cpp ScavTrap.cpp
+SRC_FILES = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.cpp=.o))
 
 all: $(NAME)

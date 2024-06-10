@@ -2,11 +2,12 @@
 
 int main()
 {
-	ScavTrap claptrap("Claptrap");
-	claptrap.attack("Enemy");
-	claptrap.takeDamage(7);
-	claptrap.beRepaired(5);
-	claptrap.attack("Enemy");
-	claptrap.takeDamage(10);
+	ScavTrap scavTrap("Claptrap");
+	scavTrap.attack("Enemy");
+	scavTrap.takeDamage(7);
+	scavTrap.beRepaired(5);
+	scavTrap.attack("Enemy");
+	scavTrap.takeDamage(10);
+	scavTrap.guardGate();
 	return 0;
 }
