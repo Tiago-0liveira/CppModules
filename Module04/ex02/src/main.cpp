@@ -4,12 +4,13 @@
 
 #include <iostream>
 
-#define ANIMALS_NUM 4
-
 int main()
 {
+	// uncomment this line to see that AAnimal is abstract and is not instantiable
+	// AAnimal *animal = new AAnimal();
+
 	Dog d;
-	Cat c;
+ 	Cat c;
 
 	d.makeSound();
 	c.makeSound();
