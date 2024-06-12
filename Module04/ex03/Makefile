@@ -1,4 +1,4 @@
-NAME = animals
+NAME = interfaces
 CC = @c++
 CFLAGS = -Wall -Wextra -Werror -g -std=c++98 $(INCLUDES)
 
