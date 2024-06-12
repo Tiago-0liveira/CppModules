@@ -1,19 +1,31 @@
-#include <AAnimal.hpp>
-#include <Cat.hpp>
-#include <Dog.hpp>
-
 #include <iostream>
-
-#define ANIMALS_NUM 4
+#include <MateriaSource.hpp>
+#include <Character.hpp>
+#include <Ice.hpp>
+#include <Cure.hpp>
 
 int main()
 {
-	Dog d;
-	Cat c;
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
 
-	d.makeSound();
-	c.makeSound();
+	ICharacter* me = new Character("me");
+
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+	
+	ICharacter* bob = new Character("bob");
+	
+	me->use(0, *bob);
+	me->use(1, *bob);
+	
+	delete bob;
+	delete me;
+	delete src;
 
 	return 0;
 }
-

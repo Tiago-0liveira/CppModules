@@ -9,7 +9,7 @@ SRC_FOLDER = src/
 OBJ_DIR = obj/
 
 SRC_ROOT_FILES = main.cpp
-CLASSES = 
+CLASSES = AMateria.cpp Character.cpp Cure.cpp Ice.cpp ICharacter.cpp MateriaSource.cpp
 
 INCLUDE_HEADERS = $(addprefix $(includefolder), \
 	$(CLASSES:%.cpp=%.hpp) \

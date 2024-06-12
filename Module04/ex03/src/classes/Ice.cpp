@@ -10,6 +10,7 @@ Ice::Ice(const Ice & copy): AMateria("ice")
 
 Ice &Ice::operator=(Ice const & rhs)
 {
+	(void)rhs;
 	return *this;
 }
 

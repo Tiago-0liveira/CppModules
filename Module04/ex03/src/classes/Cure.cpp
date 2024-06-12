@@ -10,6 +10,7 @@ Cure::Cure(const Cure & copy): AMateria("cure")
 
 Cure &Cure::operator=(Cure const & rhs)
 {
+	(void)rhs;
 	return *this;
 }
 

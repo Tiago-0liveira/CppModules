@@ -1,0 +1,15 @@
+{
+	"files.associations": {
+		"*.c": "c",
+		"new": "cpp",
+		"ostream": "cpp",
+		"iostream": "cpp"
+	},
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/home/tiagoliv/Desktop/projects/CppModules/Module04/ex01",
+			"binaryPath": "/home/tiagoliv/Desktop/projects/CppModules/Module04/ex01/animals",
+			"binaryArgs": []
+		}
+	]
+}

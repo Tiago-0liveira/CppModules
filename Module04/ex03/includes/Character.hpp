@@ -4,22 +4,24 @@
 #include <ICharacter.hpp>
 #include <AMateria.hpp>
 
+#define INV_SIZE 4
+
 class Character : public ICharacter
 {
 public:
 	Character(std::string const &name);
-	~Character();
+	virtual ~Character();
 	Character(const Character &copy);
 	Character &operator=(const Character &rhs);
 
-	std::string const &getName() const override;
-	void equip(AMateria *m) override;
-	void unequip(int idx) override;
-	void use(int idx, ICharacter &target) override;
+	virtual std::string const &getName() const;
+	virtual void equip(AMateria *m);
+	virtual void unequip(int idx);
+	virtual void use(int idx, ICharacter &target);
 
 private:
 	std::string name;
-	AMateria *inventory[4];
-}
+	AMateria *inventory[INV_SIZE];
+};
 
 #endif // CHARACTER_HPP
