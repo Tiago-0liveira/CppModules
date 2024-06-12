@@ -24,22 +24,19 @@ int main()
 	for (int i = 0; i < ANIMALS_NUM; i++)
 		delete animals[i];
 
-	return 0;
-}
-
-
-/* tests
-int main()
-{
+	std::cout << "---------------------" << std::endl;
+	
 	const Brain brain;
-
 	*brain.getIdeas() = "aksmdkasmdkmasd";
+	
 	const Brain brain2(brain);
-	const Brain brain3 = brain;
-	*brain.getIdeas() = "123";
+	*brain2.getIdeas() = "ikasmd";
+	
+	const Brain brain3 = brain2;
+
 	std::cout << *brain.getIdeas() << std::endl;
 	std::cout << *brain2.getIdeas() << std::endl;
 	std::cout << *brain3.getIdeas() << std::endl;
 
 	return 0;
-}*/
+}
