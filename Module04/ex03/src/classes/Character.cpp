@@ -29,10 +29,7 @@ Character &Character::operator=(const Character &rhs)
         for (int i = 0; i < INV_SIZE; ++i)
 		{
             if (inventory[i])
-			{
                 delete inventory[i];
-				inventory[i] = NULL;
-			}
             inventory[i] = rhs.inventory[i] ? rhs.inventory[i]->clone() : NULL;
         }
     }
