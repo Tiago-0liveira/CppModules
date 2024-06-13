@@ -24,12 +24,17 @@ int main()
 
 	std::cout << "---------------------" << std::endl;
 
-	const WrongAnimal *wrongCat = new WrongCat();
+	const WrongAnimal *wrongAnimalWrongCat = new WrongCat();
 
-	std::cout << wrongCat->getType() << " " << std::endl;
+	std::cout << wrongAnimalWrongCat->getType() << " " << std::endl;
+
+	wrongAnimalWrongCat->makeSound();
+
+	const WrongCat *wrongCat = new WrongCat();
 
 	wrongCat->makeSound();
 	
+	delete wrongAnimalWrongCat;
 	delete wrongCat;
 
 	return 0;

@@ -11,7 +11,7 @@ public:
 	WrongCat(const WrongCat & copy);
 	WrongCat &operator=(WrongCat const & rhs);
 
-	virtual void makeSound(void) const;
+	void makeSound(void) const;
 };
 
 #endif // WRONGCAT_HPP
