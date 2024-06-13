@@ -38,5 +38,12 @@ int main()
 	std::cout << *brain2.getIdeas() << std::endl;
 	std::cout << *brain3.getIdeas() << std::endl;
 
+	Dog basic;
+	{
+		Dog tmp = basic;
+		std::cout << tmp.getBrain() << std::endl;
+	}
+	std::cout << basic.getBrain() << std::endl;
+
 	return 0;
 }
