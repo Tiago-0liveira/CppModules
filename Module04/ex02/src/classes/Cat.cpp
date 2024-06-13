@@ -15,6 +15,7 @@ Cat::~Cat()
 Cat::Cat(const Cat &copy): AAnimal("Cat")
 {
 	std::cout << "Cat copy constructor called!" << std::endl;
+	brain = new Brain(*copy.getBrain());
 	*this = copy;
 }
 
@@ -23,7 +24,8 @@ Cat &Cat::operator=(Cat const &rhs)
 	std::cout << "Cat operator assigment called!" << std::endl;
 	if (this == &rhs)
 		return *this;
-	brain = new Brain(*rhs.getBrain());
+	
+	*brain = *rhs.getBrain();
 	return *this;
 }
 
