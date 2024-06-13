@@ -41,6 +41,7 @@ int main()
 	Dog basic;
 	{
 		Dog tmp = basic;
+		tmp = basic;
 		std::cout << tmp.getBrain() << std::endl;
 	}
 	std::cout << basic.getBrain() << std::endl;
