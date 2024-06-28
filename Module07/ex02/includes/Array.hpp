@@ -4,13 +4,11 @@
 #include <iostream>
 #include <stdexcept>
 
-typedef unsigned int uint;
-
 template < typename T >
 class Array {
 public:
-    Array(): arr(NULL), size() {}
-    Array(uint n): size(n) {
+    Array(): arr(NULL), _size() {}
+    explicit Array(size_t n): _size(n) {
         if (n == 0)
             arr = NULL;
         else
@@ -19,30 +17,34 @@ public:
     ~Array() {
         delete[] arr;
     }
-    Array(const Array& copy) : size(copy.getSize()) {
-        arr = new T[copy.getSize()];
+    Array(const Array& copy) : _size(copy.size()) {
+        arr = new T[copy.size()];
         *this = copy;
     }
-    Array& operator=(const Array& rhs) {
+    Array& operator=(Array const & rhs) {
         if (this == &rhs)
             return *this;
         *arr = *rhs.getRawArray();
         return *this;
     }
-    T& operator[](uint i) {
-        if (i >= size)
+    T& operator[](size_t i) {
+        if (i >= _size)
           throw std::out_of_range("Index out of bounds");
         return arr[i];
     }
-    T* getRawArray() {
+    void *operator new[](size_t n)
+    {
+        return new Array<T>(n);
+    }
+    T* getRawArray() const {
         return arr;
     };
-    uint getSize() {
-        return size;
+    size_t size() const {
+        return _size;
     }
 private:
     T*      arr;
-    uint    size;
+    size_t    _size;
 };
 
 #endif // ITER_HPP
