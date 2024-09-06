@@ -1,6 +1,6 @@
 #include <Form.hpp>
 
-Form::Form(const std::string name, int gradeToSign, int gradeToExecute):
+Form::Form(const std::string& name, int gradeToSign, int gradeToExecute):
 	_name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute), _signed(false)
 {
 	if (gradeToSign < _maxGrade || gradeToExecute < _maxGrade)
