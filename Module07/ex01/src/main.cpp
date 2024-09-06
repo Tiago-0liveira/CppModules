@@ -37,7 +37,7 @@ int main()
     iter(pointsArr, 5, print);
     std::cout << "------" << std::endl;
     iter(pointsArr2, 5, randomizePoint2D);
-    iter(pointsArr2, 10, print);
+    iter(pointsArr2, 5, print);
 
     delete[] pointsArr2;
 
