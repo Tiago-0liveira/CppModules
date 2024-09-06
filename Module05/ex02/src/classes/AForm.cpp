@@ -1,27 +1,12 @@
 #include <AForm.hpp>
 
-AForm::AForm(const std::string name, int gradeToSign, int gradeToExecute):
-	_name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute), _signed(false)
-{
-	if (gradeToSign < _maxGrade || gradeToExecute < _maxGrade)
-		throw GradeTooHighException();
-	else if (gradeToSign > _minGrade || gradeToExecute > _minGrade)
-		throw GradeTooLowException();
-}
-
-AForm::AForm(const std::string name, const std::string target, int gradeToSign, int gradeToExecute):
-	_target(target), _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute), _signed(false)
-{
-	if (gradeToSign < _maxGrade || gradeToExecute < _maxGrade)
-		throw GradeTooHighException();
-	else if (gradeToSign > _minGrade || gradeToExecute > _minGrade)
-		throw GradeTooLowException();
-}
-
 AForm::~AForm() {}
 
 AForm::AForm(const AForm & copy)
-	: _target(copy._target), _name(copy._name), _gradeToSign(copy._gradeToSign), _gradeToExecute(copy._gradeToExecute) {}
+	: _name(copy._name), _gradeToSign(copy._gradeToSign), _gradeToExecute(copy._gradeToExecute)
+{
+	*this = copy;
+}
 
 AForm &AForm::operator=(AForm const & rhs)
 {
@@ -59,12 +44,30 @@ int AForm::getGradeToExecute() const
 	return _gradeToExecute;
 }
 
-std::ostream &operator<<(std::ostream &out, AForm const &Aform)
+AForm::AForm(const std::string &name, int gradeToSign, int gradeToExecute)
+	: _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute), _signed(false)
 {
-	out << "AForm " << Aform.getName() << " is ";
-	if (!Aform.getSigned())
+	if (gradeToSign < _maxGrade || gradeToExecute < _maxGrade)
+		throw GradeTooHighException();
+	else if (gradeToSign > _minGrade || gradeToExecute > _minGrade)
+		throw GradeTooLowException();
+}
+
+void AForm::execute(const Bureaucrat &executor) const
+{
+	if (!getSigned())
+		throw FormNotSignedException();
+	if (executor.getGrade() > _gradeToExecute)
+		throw GradeTooLowException();
+	executeForm();
+}
+
+std::ostream &operator<<(std::ostream &out, AForm const &form)
+{
+	out << "AForm " << form.getName() << " is ";
+	if (!form.getSigned())
 		out << "not ";
-	out << "signed. Grade to sign: " << Aform.getGradeToSign() << ". Grade to execute: " << Aform.getGradeToExecute();
+	out << "signed. Grade to sign: " << form.getGradeToSign() << ". Grade to execute: " << form.getGradeToExecute();
 	return out;
 }
 

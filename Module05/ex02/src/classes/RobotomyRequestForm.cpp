@@ -1,7 +1,7 @@
 #include <RobotomyRequestForm.hpp>
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string target)
-	: AForm("RobotomyRequestForm", target, 72, 45) {}
+RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
+	: AForm("RobotomyRequestForm", 72, 45), _target(target) {}
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
@@ -14,22 +14,24 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const & 
 {
 	if (this != &rhs)
 	{
-		// 
+		AForm::operator=(rhs);
+		_target = rhs.getTarget();
 	}
 	return *this;
 }
 
-void RobotomyRequestForm::execute(Bureaucrat const & executor) const
+void RobotomyRequestForm::executeForm() const
 {
-	if (!getSigned())
-		throw FormNotSignedException();
-	if (executor.getGrade() > getGradeToExecute())
-		throw GradeTooLowException();
-	std::srand(std::time(0));
+	std::srand(1);
 	int random = std::rand() % 2;
 	std::cout << "*drilling noises*" << std::endl;
 	if (random == 0)
 		std::cout << _target << " has been robotomized successfully" << std::endl;
 	else
 		std::cout << "Robotomization of " << _target << " has failed" << std::endl;
+}
+
+const std::string &RobotomyRequestForm::getTarget() const
+{
+	return _target;
 }

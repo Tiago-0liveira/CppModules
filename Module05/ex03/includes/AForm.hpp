@@ -35,11 +35,10 @@ public:
 	int getGradeToExecute() const;
 
 	void beSigned(const Bureaucrat &bureaucrat);
-	virtual void execute(Bureaucrat const & executor) const = 0;
+	void execute(Bureaucrat const & executor) const;
+	virtual void executeForm() const = 0;
 protected:
-	const std::string _target;
-	AForm(const std::string name, int gradeToSign, int gradeToExecute);
-	AForm(const std::string name, const std::string target, int gradeToSign, int gradeToExecute);
+	AForm(const std::string &name, int gradeToSign, int gradeToExecute);
 private:
 	const std::string _name;
 	const int _gradeToSign;

@@ -8,7 +8,7 @@ int main()
 	Intern intern;
 	AForm *form;
 
-	form = intern.makeForm("robotomy request", "Bender");
+	form = intern.makeForm("robasdasdotomy request", "Bender");
 	if (!form)
 		return 0;
 	form->beSigned(Bureaucrat("Hermes", 1));
