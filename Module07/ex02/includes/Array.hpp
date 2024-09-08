@@ -5,45 +5,66 @@
 #include <stdexcept>
 
 template < typename T >
-class Array {
+class Array
+{
 public:
-    Array(): arr(NULL), _size() {}
-    explicit Array(size_t n): _size(n) {
-        if (n == 0)
-            arr = NULL;
-        else
-            arr = new T[n];
+    Array(): _size(0)
+	{
+		arr = new T[_size];
+	}
+    Array(unsigned int n): _size(n)
+	{
+        arr = new T[_size];
     };
-    ~Array() {
-        delete[] arr;
+    ~Array()
+	{
+		if (arr != NULL)
+            delete[] arr;
     }
-    Array(const Array& copy) : _size(copy.size()) {
-        arr = new T[copy.size()];
+    Array(const Array& copy) : _size(copy.size())
+	{
+		arr = NULL;
         *this = copy;
     }
-    Array& operator=(Array const & rhs) {
+    Array& operator=(Array const & rhs)
+	{
         if (this == &rhs)
             return *this;
-        *arr = *rhs.getRawArray();
+		if (arr != NULL)
+			delete[] arr;
+		
+		_size = rhs.size();
+		std::cout << _size << std::endl;
+		arr = new T[_size];
+		
+		if (_size == 0)
+			return *this;
+		
+		for (unsigned int i = 0; i < _size; i++)
+			arr[i] = rhs[i];
+		
         return *this;
     }
-    T& operator[](size_t i) {
-        if (i >= _size)
-          throw std::out_of_range("Index out of bounds");
+    T& operator[](unsigned int i) const
+	{
+        if (i >= _size || _size == 0)
+        {
+          throw std::out_of_range("Index out of range");
+		}
+		if (arr == NULL)
+			throw std::exception();
         return arr[i];
     }
-    void *operator new[](size_t n)
-    {
-        return new Array<T>(n);
-    }
-    T* getRawArray() const {
+    T* getRawArray() const
+	{
         return arr;
     };
-    size_t size() const {
+    size_t size() const
+	{
         return _size;
     }
 private:
-    T*      arr;
+    T*          arr;
     size_t    _size;
 };
 
