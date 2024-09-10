@@ -37,7 +37,7 @@ AForm *Intern::makeForm(const std::string & formName, const std::string & target
 			return _formCreators[i](target);
 		}
 	}
-	std::cout << "Invalid form name!" << std::endl;
+	std::cerr << "Invalid form name!" << std::endl;
 	return NULL;
 }
 

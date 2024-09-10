@@ -11,7 +11,10 @@ Form::Form(const std::string& name, int gradeToSign, int gradeToExecute):
 
 Form::~Form() {}
 
-Form::Form(const Form & copy): _name(copy._name), _gradeToSign(copy._gradeToSign), _gradeToExecute(copy._gradeToExecute)
+Form::Form(const Form & copy): 
+	_name(copy.getName()), 
+	_gradeToSign(copy.getGradeToSign()), 
+	_gradeToExecute(copy.getGradeToExecute())
 {
 	*this = copy;
 }

@@ -11,7 +11,7 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade): _name(name)
 
 Bureaucrat::~Bureaucrat() {}
 
-Bureaucrat::Bureaucrat(const Bureaucrat & copy)
+Bureaucrat::Bureaucrat(const Bureaucrat & copy): _name(copy.getName())
 {
 	*this = copy;
 }
