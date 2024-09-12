@@ -28,7 +28,7 @@ void    print(T& data) {
 
 int main()
 {
-    srand(time(NULL));
+    srand(std::time(NULL));
 
     Point2D pointsArr[5];
     Point2D *pointsArr2 = new Point2D[10];
