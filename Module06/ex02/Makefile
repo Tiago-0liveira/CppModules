@@ -1,4 +1,4 @@
-NAME = bureaucrat
+NAME = dynamic_casts
 CC = @c++
 CFLAGS = -Wall -Wextra -Werror -g -std=c++98 $(INCLUDES)
 
@@ -9,7 +9,7 @@ SRC_FOLDER = src/
 OBJ_DIR = obj/
 
 SRC_ROOT_FILES = main.cpp
-CLASSES = Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
+CLASSES = Base.cpp A.cpp B.cpp C.cpp
 
 
 INCLUDE_HEADERS = $(addprefix $(includefolder), \
