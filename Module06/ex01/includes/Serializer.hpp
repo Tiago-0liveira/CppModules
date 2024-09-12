@@ -2,7 +2,13 @@
 #define SERIALIZER_HPP
 
 #include <iostream>
-#include <Data.hpp>
+#include <stdint.h>
+
+struct Data/* Point2D */
+{
+	Data(int x, int y): x(x), y(y) {}
+	int x,y;
+};
 
 class Serializer
 {

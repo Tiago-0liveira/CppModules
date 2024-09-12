@@ -1,4 +1,4 @@
-NAME = form
+NAME = serializer
 CC = @c++
 CFLAGS = -Wall -Wextra -Werror -g -std=c++98 $(INCLUDES)
 
@@ -9,7 +9,7 @@ SRC_FOLDER = src/
 OBJ_DIR = obj/
 
 SRC_ROOT_FILES = main.cpp
-CLASSES = Data.cpp Serializer.cpp
+CLASSES = Serializer.cpp
 
 INCLUDE_HEADERS = $(addprefix $(includefolder), \
 	$(CLASSES:%.cpp=%.hpp) \

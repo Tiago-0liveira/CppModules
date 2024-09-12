@@ -3,17 +3,23 @@
 Serializer::Serializer() {}
 Serializer::~Serializer() {}
 
-Serializer::Serializer(const Serializer & copy) {}
+Serializer::Serializer(const Serializer & copy)
+{
+	(void)copy;
+}
 
-Serializer &Serializer::operator=(Serializer const & rhs) {}
-
+Serializer &Serializer::operator=(Serializer const & rhs)
+{
+	(void)rhs;
+	return *this;
+}
 
 uintptr_t Serializer::serialize(Data* ptr) 
 {
-    return 0;
+    return reinterpret_cast<uintptr_t>(ptr);
 }
 
 Data *Serializer::deserialize(uintptr_t raw)
 {
-    return new Data(0,0);
+    return reinterpret_cast<Data *>(raw);
 }
