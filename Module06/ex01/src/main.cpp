@@ -13,6 +13,11 @@ int main()
 	Data *deserialized = Serializer::deserialize(serialized);
 	
 	std::cout << deserialized->x << " " << deserialized->y << std::endl;
+
+	deserialized->x = 24;
+	deserialized->y = 24;
+
+	std::cout << deserialized->x << " " << deserialized->y << std::endl;
 	
 	return 0;
 }
