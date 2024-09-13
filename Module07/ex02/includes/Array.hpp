@@ -34,7 +34,6 @@ public:
 			delete[] arr;
 		
 		_size = rhs.size();
-		std::cout << _size << std::endl;
 		arr = new T[_size];
 		
 		if (_size == 0)
