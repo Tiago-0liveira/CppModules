@@ -35,17 +35,20 @@ static void identify(Base *p)
 static void identify(Base &p)
 {
 	try {
-		dynamic_cast<A &>(p);
+		A& not_used = dynamic_cast<A &>(p);
+		(void)not_used;
 		std::cout << "Identify by ref: A" << std::endl;
 		return ;
 	} catch (std::exception &e) {}
 	try {
-		dynamic_cast<B &>(p);
+		B& not_used = dynamic_cast<B &>(p);
+		(void)not_used;
 		std::cout << "Identify by ref: B" << std::endl;
 		return ;
 	} catch (std::exception &e) {}
 	try {
-		dynamic_cast<C &>(p);
+		C& not_used = dynamic_cast<C &>(p);
+		(void)not_used;
 		std::cout << "Identify by ref: C" << std::endl;
 		return ;
 	} catch (std::exception &e) {}
