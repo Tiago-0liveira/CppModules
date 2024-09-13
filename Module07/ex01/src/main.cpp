@@ -34,10 +34,10 @@ int main()
     Point2D *pointsArr2 = new Point2D[10];
 
     iter(pointsArr, 5, randomizePoint2D);
-    iter(pointsArr, 5, print);
+    iter(pointsArr, 5, print<Point2D>);
     std::cout << "------" << std::endl;
     iter(pointsArr2, 5, randomizePoint2D);
-    iter(pointsArr2, 5, print);
+    iter(pointsArr2, 5, print<Point2D>);
 
     delete[] pointsArr2;
 
