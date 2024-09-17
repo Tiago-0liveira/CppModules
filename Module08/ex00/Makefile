@@ -13,7 +13,6 @@ CLASSES =
 
 INCLUDE_HEADERS = $(addprefix $(includefolder), \
 	$(CLASSES:%.cpp=%.hpp) \
-	easyfind.hpp \
 )
 
 FILES = \

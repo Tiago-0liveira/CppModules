@@ -4,12 +4,13 @@
 #include <algorithm>
 
 template<typename T>
-int easyfind(T& container, int num)
+int easyfind(T container, int num)
 {
-	typename T::iterator it;
-	it = std::find(container.begin(), container.end(), num);
+	typename T::iterator it = std::find(container.begin(), container.end(), num);
+	
 	if (it == container.end())
 		return -1;
+	
 	return *it;
 }
 

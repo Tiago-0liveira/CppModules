@@ -1,89 +1,71 @@
 #include <iostream>
-#include <cstdlib>
-#include <Array.hpp>
+#include <MutantStack.hpp>
 
-#define MAX_VAL 750
-int main(int, char**)
+int main()
 {
-	Array<int> numbers(MAX_VAL);
-	int* mirror = new int[MAX_VAL];
-	srand(time(NULL));
-	for (int i = 0; i < MAX_VAL; i++)
-	{
-		const int value = rand();
-		numbers[i] = value;
-		mirror[i] = value;
-	}
-	{
-		Array<int> tmp;
-		try
-		{
-			for (int i = 0; i < MAX_VAL + 1; i++)
-				std::cout << "tmp[" << i << "]:\t" << tmp[i] << std::endl;
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << e.what() << '\t';
-		}
-		tmp = numbers;
-		Array<int> test(tmp);
-		
-		try
-		{
-			for (int i = 0; i < MAX_VAL + 1; i++)
-			{
-				if (tmp[i] != test[i])
-				{
-					std::cerr << "didn't save the same value!!" << std::endl;
-					return 1;
-				}
-			}
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << e.what() << '\t';
-			std::cerr << "You tried to access past the last element of the array" << std::endl;
-		}
-		
-		std::cout << std::endl << "test[1]:\t" << test[1] << std::endl;
-		std::cout << "tmp[1]:\t\t" << tmp[1] << std::endl << std::endl;
-		
-		test[1] = 123456789;
-		
-		std::cout << "test[1]:\t" << test[1] << std::endl;
-		std::cout << "tmp[1]:\t\t" << tmp[1] << std::endl << std::endl;
-	}
-	
-	for (int i = 0; i < MAX_VAL; i++)
-	{
-		if (mirror[i] != numbers[i])
-		{
-			std::cerr << "didn't save the same value!!" << std::endl;
-			return 1;
-		}
-	}
-	try
-	{
-		numbers[-2] = 0;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	try
-	{
-		numbers[MAX_VAL] = 0;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	
-	for (int i = 0; i < MAX_VAL; i++)
-	{
-		numbers[i] = rand();
-	}
-	delete [] mirror;
+	MutantStack<int> mstack;
 
+	mstack.push(5);
+	mstack.push(17);
+
+	std::cout << mstack.top() << std::endl;
+
+	mstack.pop();
+
+	std::cout << mstack.size() << std::endl;
+
+	mstack.push(3);
+	mstack.push(5);
+	mstack.push(737);
+	//[...]
+	mstack.push(0);
+	
+	MutantStack<int>::iterator it = mstack.begin();
+	MutantStack<int>::iterator ite = mstack.end();
+	
+	++it;
+	--it;
+	
+	while (it != ite)
+	{
+		std::cout << *it << std::endl;
+		++it;
+	}
+	std::stack<int> s(mstack);
 	return 0;
 }
+
+/*
+#include <vector>
+int main2()
+{
+	std::vector<int> mvector;
+	
+	mvector.push_back(5);
+	mvector.push_back(17);
+	
+	std::cout << *mvector.end() << std::endl;
+	
+	mvector.erase(mvector.end());
+	
+	std::cout << mvector.size() << std::endl;
+	
+	mvector.push_back(3);
+	mvector.push_back(5);
+	mvector.push_back(737);
+	//[...]
+	mvector.push_back(0);
+	
+	std::vector<int>::iterator it = mvector.begin();
+	std::vector<int>::iterator ite = mvector.end();
+	
+	++it;
+	--it;
+	
+	while (it != ite)
+	{
+		std::cout << *it << std::endl;
+		++it;
+	}
+	return 0;
+}*/
