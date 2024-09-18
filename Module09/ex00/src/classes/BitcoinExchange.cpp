@@ -44,12 +44,10 @@ void BitcoinExchange::loadDatabase(const std::string &database)
 
 	std::string line;
 	bool parse_error = false;
-	int c = 0;
 	std::getline(file, line); // skip header
-	while (std::getline(file, line) && c < 3)
+	while (std::getline(file, line))
 	{
 		Record r = parseDatabaseLine(line, parse_error);
-		++c;
 		if (!parse_error)
 		{
 			m_data[r.date] = r.value;
@@ -58,9 +56,8 @@ void BitcoinExchange::loadDatabase(const std::string &database)
 	file.close();
 }
 
-BitcoinExchange::Record BitcoinExchange::parseLine(const std::string &raw_line, bool &error, char sep, bool verbose)
+BitcoinExchange::Record BitcoinExchange::parseLine(const std::string &raw_line, bool &error, char sep)
 {
-	(void)verbose;
 	std::istringstream ss(raw_line);
 	
 	std::string line;
@@ -68,7 +65,7 @@ BitcoinExchange::Record BitcoinExchange::parseLine(const std::string &raw_line, 
 	std::string date;
 	float value;
 	
-	//std::cout << "parseLine::raw_line:" << raw_line << "||";
+	std::cout << "parseLine::raw_line:" << raw_line << "||";
 	if (!std::getline(ss, line, sep))
 	{
 		std::cout << "Error: could not parse line." << std::endl;
@@ -76,34 +73,35 @@ BitcoinExchange::Record BitcoinExchange::parseLine(const std::string &raw_line, 
 		return Record("", 0);
 	}
 	std::cout << "date::" << line << "||";
-	date = line;
-	if (!std::getline(ss, line, sep))
+	date = trim(line);
+	if (!std::getline(ss, line, sep) || !validDate(date))
 	{
 		std::cout << "Error: could not parse line." << std::endl;
 		error = true;
 		return Record("", 0);
 	}
 	std::cout << "value::" << line << "||";
-	value = std::strtof(line.c_str(), NULL);
-	if (errno == ERANGE)
+	line = trim(line);
+	value = std::strtof(trim(line).c_str(), NULL);
+	if (errno == ERANGE || !validValue(value))
 	{
 		std::cout << "Error: could not parse value." << std::endl;
 		error = true;
 		return Record("", 0);
 	}
-	
+	std::cout << std::endl;
 	
 	return Record(date, value);
 }
 
-BitcoinExchange::Record BitcoinExchange::parseDatabaseLine(const std::string &line, bool &error, bool verbose)
+BitcoinExchange::Record BitcoinExchange::parseDatabaseLine(const std::string &line, bool &error)
 {
-	return parseLine(line, error, ',', verbose);
+	return parseLine(line, error, ',');
 }
 
-BitcoinExchange::Record BitcoinExchange::parseInputLine(const std::string &line, bool &error, bool verbose)
+BitcoinExchange::Record BitcoinExchange::parseInputLine(const std::string &line, bool &error)
 {
-	return parseLine(line, error, ' ', verbose);
+	return parseLine(line, error, ' ');
 }
 
 float BitcoinExchange::applyExchangeRate(const std::string &date, float amount) const
@@ -142,13 +140,41 @@ void BitcoinExchange::applyRatesToFile(const std::string &inputFile)
 
 bool BitcoinExchange::validDate(const std::string &date) const
 {
-	(void)date;
+	if (date.length() != 10)
+		return false;
+	for (int i = 0; i < 10; i++)
+	{
+		char c = date.at(i);
+		if (i == 4 && i == 7)
+		{
+			
+		} else if 
+	}
+
+
 	return true;
 }
 
 
 bool BitcoinExchange::validValue(float value) const
 {
-	(void)value;
+	if (value < 0.0f || value > 1000.0f)
+	{
+		std::cout << "Invalid date!" << std::endl;
+		return false;
+	}
+
 	return true;
+}
+
+std::string trim(const std::string& str)
+{
+    std::size_t first = str.find_first_not_of(" \t\n\r\f\v");
+    if (first == std::string::npos) {
+        return "";
+    }
+    
+    std::size_t last = str.find_last_not_of(" \t\n\r\f\v");
+    
+    return str.substr(first, last - first + 1);
 }

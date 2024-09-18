@@ -31,13 +31,14 @@ public:
 private:
 	void loadDatabase(const std::string &database);
 	
-	Record parseLine(const std::string &line, bool &error, char sep, bool verbose = true);
-	Record parseDatabaseLine(const std::string &line, bool &error, bool verbose = true);
-	Record parseInputLine(const std::string &line, bool &error, bool verbose = true);
+	Record parseLine(const std::string &line, bool &error, char sep);
+	Record parseDatabaseLine(const std::string &line, bool &error);
+	Record parseInputLine(const std::string &line, bool &error);
 	
 	std::map<std::string, float> m_data;
 	static const std::string &databasePath;
 };
 
+std::string trim(const std::string& str);
 
 #endif //BITCOINEXCHANGE_HPP
