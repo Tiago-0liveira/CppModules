@@ -35,7 +35,7 @@ int main()
 	return 0;
 }
 
-/*
+
 #include <vector>
 int main2()
 {
@@ -43,10 +43,6 @@ int main2()
 	
 	mvector.push_back(5);
 	mvector.push_back(17);
-	
-	std::cout << *mvector.end() << std::endl;
-	
-	mvector.erase(mvector.end());
 	
 	std::cout << mvector.size() << std::endl;
 	
@@ -68,4 +64,4 @@ int main2()
 		++it;
 	}
 	return 0;
-}*/
+}
