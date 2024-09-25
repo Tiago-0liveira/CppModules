@@ -4,7 +4,7 @@
 #include <vector>
 #include <list>
 
-#include <map>
+#include <set>
 #include <sstream>
 
 #include <climits>
@@ -30,7 +30,7 @@ bool isValidInt(const std::string &str, int &result) {
     return true;
 }
 
-bool insertToVectorUniqueNumber(std::vector<int> &vec, std::map<int, int> &map, const std::string &str)
+bool insertToSetUniqueNumber(std::vector<int> &vec, std::set<int> &set, const std::string &str)
 {
 	int n = 0;
 	if (!isValidInt(str, n))
@@ -43,12 +43,11 @@ bool insertToVectorUniqueNumber(std::vector<int> &vec, std::map<int, int> &map, 
 		std::cerr << "Error: Negative number found: " << n << std::endl;
 		return false;
 	}
-	if (map[n])
+	if (!set.insert(n).second)
 	{
 		std::cerr << "Error: Duplicate number found: " << n << std::endl;
 		return false;
 	}
-	map[n] = 1;
 	vec.push_back(n);
 	return true;
 }
@@ -60,7 +59,7 @@ int main(int argc, char **argv)
 		std::cerr << "Usage: ./PmergeMe \"<int sequence>\"" << std::endl;
 		return 1;
 	}
-	std::map<int, int> number_table;
+	std::set<int> number_table;
 	std::vector<int> unique_numbers;
 	if (argc == 2)
 	{
@@ -68,13 +67,13 @@ int main(int argc, char **argv)
         std::string token;
         while (iss >> token)
         {
-			if (!insertToVectorUniqueNumber(unique_numbers, number_table, token))
+			if (!insertToSetUniqueNumber(unique_numbers, number_table, token))
 				return 1;
         }
 	} else {
 		for (int i = 1; i < argc; ++i)
         {
-			if (!insertToVectorUniqueNumber(unique_numbers, number_table, argv[i]))
+			if (!insertToSetUniqueNumber(unique_numbers, number_table, argv[i]))
 				return 1;
         }
 	}
