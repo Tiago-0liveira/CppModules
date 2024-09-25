@@ -25,7 +25,7 @@ public:
 	struct Record
 	{
 		Record(const std::string &d, float v);
-		const std::string &date;
+		const std::string date;
 		float value;
 	};
 private:
